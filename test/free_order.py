@@ -15,23 +15,25 @@ def task(param):
     return {"last": last, "content": decrypt_cbc(res.content)}
 
 
+# 89996547
 if __name__ == '__main__':
     input_param = {
-        "userCouponId": "",
+        "userCouponId": "89996547",
         "productType": "1",
-        "orderSum": "200",
+        "orderSum": "100",
         "filterSource": "20",
-        "originalCost": "200",
+        "originalCost": "100",
         "payType": "1",
         "createOrderCarType": "1",
         "invoiceNumber": "22123333444",
         "stationId": "12",
-        "oilId": "2",
+        "oilId": "1",
         "invoiceHead": "深圳市警视通实业有限公司",
         "orderType": "1",
-        "oilgunId": "2039",
+        "oilgunId": "1336",
         "hadInvoice": "true",
-        "freeOrderActivity": "1"
+        "yiDouPayFlag": 1
+        # "freeOrderActivity": "0"
     }
     headers = {'Content-Type': 'application/text'}
     params = []
@@ -39,7 +41,7 @@ if __name__ == '__main__':
         for line in f.readlines():
             session_key = line.strip()
             data_body = encrypt_cbc(json.dumps(input_param)).decode()
-            v2_url = "http://dev.ejiayou.com/oreo/rs/order/create/v2/" + session_key + "/121212121"
+            v2_url = "http://localhost:8080/oreo/rs/order/create/v2/" + session_key + "/121212121"
             param = {
                 'body': data_body,
                 'header': headers,
