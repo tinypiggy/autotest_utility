@@ -52,13 +52,13 @@ def decrypt(msg, aes_key=None):
 
 
 # oreo 创建订单接口加解密
-def encrypt_cbc(msg, key='24ReoosAdrdAplpe', iv='E-24-Reoo-Sritng'):
+def encrypt_cbc(msg, key, iv):
     aes = AES.new(key.encode(), AES.MODE_CBC, IV=iv.encode())
     msg = pad(msg)
     return base64.b64encode(aes.encrypt(msg))
 
-
-def decrypt_cbc(msg, key=b'24ReoosAdrdAplpe', iv=b'E-24-Reoo-Sritng'):
+# key 和 iv 格式 b'121212121' 或者 encode()
+def decrypt_cbc(msg, key, iv):
     aes = AES.new(key, AES.MODE_CBC, IV=iv)
     return unpad(aes.decrypt(base64.b64decode(msg)).decode())
 
